@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { flushSync } from 'react-dom';
 import { Link } from 'react-router-dom';
 import OAuth from '../components/OAuth';

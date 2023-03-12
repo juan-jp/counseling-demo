@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
-import { flushSync } from 'react-dom';
+import { useState } from 'react'
+
 import {AiFillEyeInvisible, AiFillEye} from "react-icons/ai"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import {getAuth, createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
+import {db} from '../firebase'
+import { serverTimestamp, setDoc, doc} from 'firebase/firestore';
+import { toast } from 'react-toastify';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,12 +18,39 @@ export default function SignUp() {
   });
 
   const {name, email, password } = formData;
+  const navigate = useNavigate();
+
   function onChange(event){
     setFormData((prevState)=>({
       ...prevState,
       [event.target.id]: event.target.value
     }))
-  } 
+  }
+  async function onSubmit(event){
+    event.preventDefault()
+    try {
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+      updateProfile(auth.currentUser,{
+        displayName: name
+      })
+
+
+      const user = userCredential.user
+      const formDataCopy ={...formData};
+      delete formDataCopy.password;
+      formDataCopy.timestamp =serverTimestamp();
+
+      await setDoc(doc(db, "users", user.uid), formDataCopy)
+      toast.success("회원가입 성공")
+      navigate('/')
+      console.log(user)
+    } catch (error) {
+      toast.error("뭔가 잘못된군요")
+    }
+  }
+   
   return (
 
     <section>
@@ -33,7 +64,7 @@ export default function SignUp() {
         />
       </div>
       <div className ='w-full md:w-[67%] lg:w-[40%] lg:ml-20'>
-        <form>
+        <form onSubmit={onSubmit}>
         <input 
           type="text" 
           id='name' 

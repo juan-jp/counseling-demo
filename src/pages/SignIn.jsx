@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { flushSync } from 'react-dom';
 import {AiFillEyeInvisible, AiFillEye} from "react-icons/ai"
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ export default function SignIn() {
       ...prevState,
       [event.target.id]: event.target.value
     }))
-  } 
+  }
   return (
 
     <section>

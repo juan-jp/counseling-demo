@@ -12,7 +12,7 @@ export default function Header() {
     <div className='bg-white border-b shadow-sm sticky top-0 z-50'>
         <header  className='flex justify-between items-center px-3 max-w-6xl mx-auto'>
             <div>
-                <img src='https://static.wixstatic.com/media/06adb3_2763e3b6d2c848f69a6ad02ad5cc8c92~mv2.png/v1/fill/w_464,h_464,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/222.png' 
+                <img src='' 
                 alt='logo'
                 className='h-5 cursor-pointer'
                 onClick ={()=> navigate("/")}>

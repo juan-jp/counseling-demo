@@ -19,7 +19,7 @@ export default function Header() {
                 </img>
             </div>
             <div>
-                <ul className='flex space-x-20'>
+            <ul className='flex space-x-20'>
                     <li className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${pathMathRoute("/") && "text-black border-b-blue-400"}`}
                     onClick={()=> navigate('/')}
                     >Home</li>

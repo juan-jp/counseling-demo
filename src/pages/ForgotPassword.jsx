@@ -1,6 +1,7 @@
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react'
-import { flushSync } from 'react-dom';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import OAuth from '../components/OAuth';
 
 export default function SignIn() {
@@ -10,6 +11,17 @@ export default function SignIn() {
   function onChange(event){
     setEmail(event.target.value);
     } 
+  async function onSubmit(e){
+    
+    e.preventDefault()
+    try {
+      const auth = getAuth();
+      await sendPasswordResetEmail(auth, email) 
+      toast.success("재설정 이메일을 보냈습니다")
+    } catch (error) {
+      toast.error("비밀번호를 찾을 수 없습니다")
+    }
+  }
   return (
 
     <section>
@@ -23,7 +35,7 @@ export default function SignIn() {
         />
       </div>
       <div className ='w-full md:w-[67%] lg:w-[40%] lg:ml-20'>
-        <form>
+        <form onSubmit={onSubmit}>
           <input 
           type="email" 
           id='email' 

@@ -9,6 +9,8 @@ import ForgotPassword from "./pages/ForgotPassword"
 import Header from "./components/Header";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import CreateInfo from "./pages/CreateInfo";
+import CreateCounsel from "./pages/CreateCounsel";
 function App() {
   return (
     <>
@@ -22,6 +24,8 @@ function App() {
         <Route path ="/sign-in" element={<SignIn/>} /> 
         <Route path ="/sign-up" element={<SignUp/>} /> 
         <Route path ="/students" element={<Students/>} /> 
+        <Route path ="/create-info" element={<CreateInfo/>} /> 
+        <Route path ="/create-counsel" element={<CreateCounsel/>} /> 
         <Route path ="/forgot-password" element={<ForgotPassword/>} /> 
       </Routes>
 

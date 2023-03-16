@@ -1,10 +1,10 @@
 import { getAuth, updateProfile } from 'firebase/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { db } from '../firebase';
-
+import {VscDebugStart} from "react-icons/vsc"
 
 export default function Profile() {
   const auth = getAuth()
@@ -76,6 +76,19 @@ return (
           <p onClick={onLogout} className='text-teal-500 hover:text-teal-700 transition ease-in-out duration-200 cursor-pointer'>로그아웃</p>
         </div>
       </form>
+
+      <button  type='submit' className=' w-full bg-blue-600 text-white px-7 py-3 text-sm font-bold rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 '>
+        <Link to="/create-info" className='flex justify-center items-center mr-2 '> 
+          <VscDebugStart className='text-2xl mr-1' />
+          상담 시작
+        </Link>
+      </button>
+      <button  type='submit' className=' mt-6 w-full bg-blue-600 text-white px-7 py-3 text-sm font-bold rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800 '>
+        <Link to="/create-counsel" className='flex justify-center items-center mr-2 '> 
+          <VscDebugStart className='text-2xl mr-1' />
+          생기부 생성
+        </Link>
+      </button>
     </div>
     
     </section>
